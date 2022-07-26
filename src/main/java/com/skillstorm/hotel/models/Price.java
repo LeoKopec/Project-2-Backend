@@ -11,6 +11,7 @@ public class Price {
 		super();
 	}
 
+	// full-argument constructor
 	public Price(Room room, LocalDate day, float price) {
 		super();
 		this.room = room;
@@ -18,6 +19,7 @@ public class Price {
 		this.price = price;
 	}
 
+	// getters and setters
 	public Room getRoom() {
 		return room;
 	}
@@ -42,6 +44,7 @@ public class Price {
 		this.price = price;
 	}
 
+	// to-string function
 	@Override
 	public String toString() {
 		return "Price [room=" + room.getId() + ", day=" + day + ", price=" + price + "]";

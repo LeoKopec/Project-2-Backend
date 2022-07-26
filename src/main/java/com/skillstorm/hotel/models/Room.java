@@ -10,6 +10,7 @@ public class Room {
 		super();
 	}
 
+	// full-argument constructor
 	public Room(int id, Hotel hotel, String name, int size) {
 		super();
 		this.id = id;
@@ -18,6 +19,7 @@ public class Room {
 		this.size = size;
 	}
 
+	// constructor without the auto-incremented id
 	public Room(Hotel hotel, String name, int size) {
 		super();
 		this.hotel = hotel;
@@ -25,6 +27,7 @@ public class Room {
 		this.size = size;
 	}
 
+	// getters and setters
 	public int getId() {
 		return id;
 	}
@@ -57,6 +60,7 @@ public class Room {
 		this.size = size;
 	}
 
+	// to-string function
 	@Override
 	public String toString() {
 		return "Room [id=" + id + ", hotel=" + hotel.getId() + ", name=" + name + ", size=" + size + "]";
