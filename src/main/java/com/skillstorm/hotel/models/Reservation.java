@@ -14,6 +14,7 @@ public class Reservation {
 		super();
 	}
 
+	// full-argument constructor
 	public Reservation(int id, Guest guest, Room room, LocalDate start_date, LocalDate end_date, float total_price) {
 		super();
 		this.id = id;
@@ -24,6 +25,7 @@ public class Reservation {
 		this.total_price = total_price;
 	}
 
+	// constructor without the auto-incremented id
 	public Reservation(Guest guest, Room room, LocalDate start_date, LocalDate end_date, float total_price) {
 		super();
 		this.guest = guest;
@@ -33,6 +35,7 @@ public class Reservation {
 		this.total_price = total_price;
 	}
 
+	// getters and setters
 	public int getId() {
 		return id;
 	}
@@ -81,6 +84,7 @@ public class Reservation {
 		this.total_price = total_price;
 	}
 
+	// to-string function
 	@Override
 	public String toString() {
 		return "Reservation [id=" + id + ", guest=" + guest.getId() + ", room=" + room.getId() + ", start_date=" + start_date + ", end_date=" + end_date
