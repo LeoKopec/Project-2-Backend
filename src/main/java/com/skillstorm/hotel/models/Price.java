@@ -1,5 +1,53 @@
 package com.skillstorm.hotel.models;
 
-public class Price {
+import java.time.LocalDate;
 
+public class Price {
+	private Room room;
+	private LocalDate day;
+	private float price;
+	
+	public Price() {
+		super();
+	}
+
+	// full-argument constructor
+	public Price(Room room, LocalDate day, float price) {
+		super();
+		this.room = room;
+		this.day = day;
+		this.price = price;
+	}
+
+	// getters and setters
+	public Room getRoom() {
+		return room;
+	}
+
+	public void setRoom(Room room) {
+		this.room = room;
+	}
+
+	public LocalDate getDay() {
+		return day;
+	}
+
+	public void setDay(LocalDate day) {
+		this.day = day;
+	}
+
+	public float getPrice() {
+		return price;
+	}
+
+	public void setPrice(float price) {
+		this.price = price;
+	}
+
+	// to-string function
+	@Override
+	public String toString() {
+		return "Price [room=" + room.getId() + ", day=" + day + ", price=" + price + "]";
+	}
+	
 }
