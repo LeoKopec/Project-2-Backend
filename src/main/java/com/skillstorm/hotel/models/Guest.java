@@ -1,11 +1,40 @@
 package com.skillstorm.hotel.models;
 
+import java.util.Objects;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
+@Entity
+@Table(name = "guest")
 public class Guest {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "guest_id")
 	private int id;
+	
+	@NotBlank
+	@Column(name = "guest_first_name")
 	private String first_name;
+	
+	@NotBlank
+	@Column(name = "guest_last_name")
 	private String last_name;
+	
+	@NotBlank
+	@Email
+	@Column(name = "guest_email")
 	private String email;
+	
+	@NotBlank
+	@Column(name = "guest_phone")
 	private String phone;
 	
 	public Guest() {
@@ -70,6 +99,23 @@ public class Guest {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Guest other = (Guest) obj;
+		return id == other.id;
 	}
 
 	// to-string function

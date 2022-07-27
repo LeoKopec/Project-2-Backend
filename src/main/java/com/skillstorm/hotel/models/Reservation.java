@@ -2,12 +2,48 @@ package com.skillstorm.hotel.models;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotNull;
+
+@Entity
+@Table(name = "reservation")
 public class Reservation {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "reserv_id")
 	private int id;
+	
+	@NotNull
+	@Column(name = "reserv_guest")
+	@ManyToOne
+	@JoinColumn(name = "guest_id")
 	private Guest guest;
+	
+	@NotNull
+	@Column(name = "reserv_room")
+	@ManyToOne
+	@JoinColumn(name = "room_id")
 	private Room room;
+	
+	@Future
+	@Column(name = "reserv_start_date")
 	private LocalDate start_date;
+	
+	@Future
+	@Column(name = "reserv_end_date")
 	private LocalDate end_date;
+	
+	@NotNull
+	@Column(name = "reserv_total_price")
 	private float total_price;
 	
 	public Reservation() {
