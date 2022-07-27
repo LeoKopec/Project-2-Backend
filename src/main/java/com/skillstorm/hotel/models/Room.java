@@ -1,16 +1,19 @@
 package com.skillstorm.hotel.models;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "Room")
+@Table(name = "room")
 public class Room {
 	
 	
@@ -31,6 +34,9 @@ public class Room {
 	@NotBlank 
 	@Column(name ="room_size")
 	private int size;
+	
+	@OneToMany(mappedBy = "room")
+	private Set<Reservation> reservations;
 	
 	public Room() {
 		super();
