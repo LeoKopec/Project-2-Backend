@@ -2,9 +2,30 @@ package com.skillstorm.hotel.models;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+
+
+@Entity
+@Table(name = "price")
 public class Price {
+	
+	@Id 
+	@Column(name="price_room")
+	@NotBlank
 	private Room room;
+	
+	@Id
+	@NotBlank
+	@Column(name="price_day")
 	private LocalDate day;
+	
+	
+	@NotBlank
+	@Column(name="price")
 	private float price;
 	
 	public Price() {
