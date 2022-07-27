@@ -1,12 +1,14 @@
 package com.skillstorm.hotel.models;
 
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -36,6 +38,9 @@ public class Guest {
 	@NotBlank
 	@Column(name = "guest_phone")
 	private String phone;
+	
+	@OneToMany(mappedBy = "guest")
+	private Set<Reservation> reservations;
 	
 	public Guest() {
 		
@@ -99,6 +104,14 @@ public class Guest {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+	
+	public Set<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(Set<Reservation> reservations) {
+		this.reservations = reservations;
 	}
 
 	@Override
