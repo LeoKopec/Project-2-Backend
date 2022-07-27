@@ -1,10 +1,13 @@
 package com.skillstorm.hotel.models;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
@@ -38,6 +41,9 @@ public class Hotel {
 	@DecimalMax(value = "5.0")
 	@Column(name = "hotel_rate")
 	private double rate;
+	
+	@OneToMany(mappedBy = "hotel")
+	private Set<Room> rooms;
 	
 	public Hotel() {
 		
@@ -101,6 +107,14 @@ public class Hotel {
 
 	public void setRate(double rate) {
 		this.rate = rate;
+	}
+
+	public Set<Room> getRooms() {
+		return rooms;
+	}
+
+	public void setRooms(Set<Room> rooms) {
+		this.rooms = rooms;
 	}
 
 	// to-string function
