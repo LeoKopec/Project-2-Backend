@@ -1,9 +1,35 @@
 package com.skillstorm.hotel.models;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+@Entity
+@Table(name = "Room")
 public class Room {
+	
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name ="room_id")
 	private int id;
+	
+	
+	@NotBlank
+	@Column(name = "room_hotel")
 	private Hotel hotel;
+	
+	@NotBlank
+	@Column(name = "room_name")
 	private String name;
+	
+	@NotBlank 
+	@Column(name ="room_size")
 	private int size;
 	
 	public Room() {
