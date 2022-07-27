@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
@@ -16,6 +17,7 @@ public class Price {
 	@Id 
 	@Column(name="price_room")
 	@NotBlank
+	@JoinColumn(name= "")
 	private Room room;
 	
 	@Id
