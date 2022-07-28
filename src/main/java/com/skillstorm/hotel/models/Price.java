@@ -1,5 +1,6 @@
 package com.skillstorm.hotel.models;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -13,10 +14,10 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "price")
-public class Price {
+public class Price implements Serializable{
 	
 	@Id 
-	@Column(name="price_room")
+//	@Column(name="price_room")
 	@NotBlank
 	@ManyToOne
 	@JoinColumn(name="room_id")

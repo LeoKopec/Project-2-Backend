@@ -25,7 +25,7 @@ public class Room {
 	private int id;
 	
 	@NotBlank
-	@Column(name = "room_hotel")
+//	@Column(name = "room_hotel")
 	@ManyToOne
 	@JoinColumn(name = "hotel_id")
 	private Hotel hotel;

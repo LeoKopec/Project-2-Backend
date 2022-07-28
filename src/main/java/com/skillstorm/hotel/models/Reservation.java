@@ -23,13 +23,13 @@ public class Reservation {
 	private int id;
 	
 	@NotNull
-	@Column(name = "reserv_guest")
+//	@Column(name = "reserv_guest")
 	@ManyToOne
 	@JoinColumn(name = "guest_id")
 	private Guest guest;
 	
 	@NotNull
-	@Column(name = "reserv_room")
+//	@Column(name = "reserv_room")
 	@ManyToOne
 	@JoinColumn(name = "room_id")
 	private Room room;
