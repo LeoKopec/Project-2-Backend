@@ -8,8 +8,8 @@
 
 ```json
 {
-    reservation: {}
-    room: {}
+    "reservation": {},
+    "room": {}
 }
 ```
 
@@ -17,8 +17,8 @@
 
 ```json
 {
-room: {}
-prices: []
+    "room": {},
+    "prices": []
 }
 ```
 
