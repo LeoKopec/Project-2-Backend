@@ -2,6 +2,7 @@ package com.skillstorm.hotel.models;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +14,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "reservation")
 public class Reservation {
@@ -22,16 +25,18 @@ public class Reservation {
 	@Column(name = "reserv_id")
 	private int id;
 	
-	@NotNull
+//	@NotNull
 //	@Column(name = "reserv_guest")
-	@ManyToOne
-	@JoinColumn(name = "guest_id")
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name = "reserv_guest")
+	@JsonBackReference(value="guest")
 	private Guest guest;
 	
-	@NotNull
+//	@NotNull
 //	@Column(name = "reserv_room")
 	@ManyToOne
-	@JoinColumn(name = "room_id")
+	@JoinColumn(name = "reserv_room")
+	@JsonBackReference(value="room")
 	private Room room;
 	
 	@Future

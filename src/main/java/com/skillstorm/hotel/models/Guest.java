@@ -13,6 +13,10 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "guest")
 public class Guest {
@@ -40,6 +44,7 @@ public class Guest {
 	private String phone;
 	
 	@OneToMany(mappedBy = "guest")
+	@JsonManagedReference(value="guest")
 	private Set<Reservation> reservations;
 	
 	public Guest() {

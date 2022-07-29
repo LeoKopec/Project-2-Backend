@@ -28,12 +28,12 @@ public class ReservationController {
 	@Autowired
 	private ReservationService service;
 	
-//	@GetMapping("/{email}")
-//	public List<ReservationDTO> findByEmail(@PathVariable String email) {
-//		return null;
-//	}
+	@GetMapping
+	public List<Reservation> findByEmail() {
+		return service.findByEmail();
+	}
 	
-	@PostMapping
+	@PostMapping()
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Reservation create(@Valid @RequestBody Reservation reservation) {
 		return service.save(reservation);

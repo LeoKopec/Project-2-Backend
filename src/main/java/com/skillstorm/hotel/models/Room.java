@@ -14,6 +14,10 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "room")
 public class Room {
@@ -27,7 +31,8 @@ public class Room {
 	@NotBlank
 //	@Column(name = "room_hotel")
 	@ManyToOne
-	@JoinColumn(name = "hotel_id")
+	@JoinColumn(name = "room_hotel")
+	@JsonBackReference(value="hotel")
 	private Hotel hotel;
 	
 	@NotBlank
@@ -39,9 +44,11 @@ public class Room {
 	private int size;
 	
 	@OneToMany(mappedBy = "room")
+	@JsonManagedReference(value="room")
 	private Set<Reservation> reservations;
 	
 	@OneToMany(mappedBy = "room")
+	@JsonManagedReference(value="room_price")
 	private Set<Price> prices;
 	
 	public Room() {
