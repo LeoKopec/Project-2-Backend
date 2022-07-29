@@ -1,4 +1,6 @@
-package com.skillstorm.hotel.models;
+package com.skillstorm.hotel.dtos;
+
+import com.skillstorm.hotel.models.Hotel;
 
 public class HotelDto {
 	
