@@ -2,6 +2,7 @@ package com.skillstorm.hotel.models;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,8 +15,13 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "price")
-public class Price implements Serializable{
+public class Price implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2306016816357216471L;
+
 	@Id 
 //	@Column(name="price_room")
 	@NotBlank
@@ -74,6 +80,23 @@ public class Price implements Serializable{
 	@Override
 	public String toString() {
 		return "Price [room=" + room.getId() + ", day=" + day + ", price=" + price + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(day, room.getId());
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Price other = (Price) obj;
+		return Objects.equals(day, other.day) && Objects.equals(room.getId(), other.room.getId());
 	}
 	
 }
