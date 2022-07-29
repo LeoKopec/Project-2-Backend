@@ -6,7 +6,7 @@ import com.skillstorm.hotel.models.Reservation;
 
 public interface ReservationService {
 
-	List<Reservation> findByEmail();
+	List<Reservation> findByEmail(String email);
 	Reservation save(Reservation reservation);
 	Reservation update(Reservation reservation);
 	void deleteById(int id);
