@@ -19,8 +19,8 @@ public class ReservationServiceImpl implements ReservationService{
 	private ReservationRepository repository;
 	
 	@Override
-	public List<Reservation> findByEmail() {
-		return repository.findAll();
+	public List<Reservation> findByEmail(String email) {
+		return repository.findByEmail(email);
 	}
 	
 	@Override
