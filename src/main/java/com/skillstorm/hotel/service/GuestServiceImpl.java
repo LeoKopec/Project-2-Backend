@@ -1,17 +1,14 @@
 package com.skillstorm.hotel.service;
 
-import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.skillstorm.hotel.Repository.GuestRepository;
 import com.skillstorm.hotel.models.Guest;
 
-
 @Service
+@Primary
 public class GuestServiceImpl implements GuestService {
 
 	@Autowired
@@ -21,9 +18,5 @@ public class GuestServiceImpl implements GuestService {
 	public Guest save(Guest guest) {
 		return repo.save(guest);
 	}
-
-	
-
-	
 
 }
