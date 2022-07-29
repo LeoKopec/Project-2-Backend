@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 
 @Entity
 @Table(name = "price")
@@ -20,7 +22,8 @@ public class Price implements Serializable{
 //	@Column(name="price_room")
 	@NotBlank
 	@ManyToOne
-	@JoinColumn(name="room_id")
+	@JoinColumn(name="price_room")
+	@JsonBackReference(value="room_price")
 	private Room room;
 	
 	@Id

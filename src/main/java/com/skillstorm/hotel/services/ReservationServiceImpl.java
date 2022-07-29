@@ -1,5 +1,7 @@
 package com.skillstorm.hotel.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,11 @@ public class ReservationServiceImpl implements ReservationService{
 	private ReservationRepository repository;
 	
 	@Override
+	public List<Reservation> findByEmail() {
+		return repository.findAll();
+	}
+	
+	@Override
 	public Reservation save(Reservation reservation) {
 		return repository.save(reservation);
 	}
@@ -30,5 +37,6 @@ public class ReservationServiceImpl implements ReservationService{
 	public void deleteById(int id) {
 		repository.deleteById(id);
 	}
+
 
 }
