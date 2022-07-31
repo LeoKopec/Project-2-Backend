@@ -7,6 +7,7 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -17,11 +18,9 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "price")
+@IdClass(PriceId.class)
 public class Price implements Serializable {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -2306016816357216471L;
 
 	@Id 
@@ -83,23 +82,6 @@ public class Price implements Serializable {
 	@Override
 	public String toString() {
 		return "Price [room=" + room.getId() + ", day=" + day + ", price=" + price + "]";
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(day, room.getId());
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Price other = (Price) obj;
-		return Objects.equals(day, other.day) && Objects.equals(room.getId(), other.room.getId());
 	}
 	
 }
