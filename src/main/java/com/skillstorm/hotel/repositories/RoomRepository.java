@@ -1,11 +1,11 @@
 package com.skillstorm.hotel.repositories;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Repository;
 
 import com.skillstorm.hotel.models.Room;
@@ -18,13 +18,14 @@ public interface RoomRepository extends JpaRepository<Room, Integer> {
 			+ "    WHERE res.start_date BETWEEN :start AND :end\r\n"
 			+ "    OR res.end_date BETWEEN :start AND :end\r\n"
 			+ "    OR (res.start_date <= :start AND res.end_date >= :end)\r\n"
-			+ ") AND r.hotel NOT IN (\r\n"
+			+ ") AND r.hotel IN (\r\n"
 			+ "	SELECT h.id FROM Hotel h WHERE h.city = :city\r\n"
 			+ ")")
-	public List<Room> findAvailableByParams(
+	public Streamable<Room> findAvailableByParams(
 			@Param("start") LocalDate startDate,
 			@Param("end") LocalDate endDate,
 			@Param("city") String city,
 			@Param("size") int roomSize
 			);
+	
 }

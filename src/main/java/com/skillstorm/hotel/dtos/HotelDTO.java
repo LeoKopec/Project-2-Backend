@@ -1,36 +1,70 @@
 package com.skillstorm.hotel.dtos;
 
-import com.skillstorm.hotel.models.Hotel;
-
-public class HotelDto {
+public class HotelDTO {
 	
-	private Hotel hotel;
+	// Hotel values
+	private int id;
+	private String name;
+	private String desc;
+	private String city;
+	private double rate;
+	
+	// Derived values
+	// The number of rooms, context dependent, may be based on criterion
+	private int numberRooms;
+	// The lowest priced room, may not be set in certain contexts
 	private double lowestPrice;
 	
-	public HotelDto() {
+	public HotelDTO() {
 		super();
 	}
 
-	public HotelDto(Hotel hotel, double lowestPrice) {
+	public HotelDTO(int id, String name, String desc, String city, double rate) {
 		super();
-		this.hotel = hotel;
+		this.id = id;
+		this.name = name;
+		this.desc = desc;
+		this.city = city;
+		this.rate = rate;
+	}
+
+	public HotelDTO(int id, String name, String desc, String city, double rate, int numberRooms, double lowestPrice) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.desc = desc;
+		this.city = city;
+		this.rate = rate;
+		this.numberRooms = numberRooms;
 		this.lowestPrice = lowestPrice;
 	}
 
-	public Hotel getHotel() {
-		return hotel;
+	public int getId() {
+		return id;
 	}
 
-	public void setHotel(Hotel hotel) {
-		this.hotel = hotel;
+	public String getName() {
+		return name;
+	}
+
+	public String getDesc() {
+		return desc;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public double getRate() {
+		return rate;
+	}
+
+	public int getNumberRooms() {
+		return numberRooms;
 	}
 
 	public double getLowestPrice() {
 		return lowestPrice;
-	}
-
-	public void setLowestPrice(double lowestPrice) {
-		this.lowestPrice = lowestPrice;
 	}
 
 }

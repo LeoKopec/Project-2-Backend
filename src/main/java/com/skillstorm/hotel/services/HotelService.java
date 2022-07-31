@@ -3,11 +3,10 @@ package com.skillstorm.hotel.services;
 import java.time.LocalDate;
 import java.util.List;
 
-import com.skillstorm.hotel.models.Hotel;
-import com.skillstorm.hotel.models.Room;
+import com.skillstorm.hotel.dtos.HotelDTO;
 
 public interface HotelService {
-	public List<Room> findByParams(
+	public List<HotelDTO> findByParams(
 			LocalDate startDate,
 			LocalDate endDate,
 			String location,

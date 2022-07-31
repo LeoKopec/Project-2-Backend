@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skillstorm.hotel.models.Hotel;
-import com.skillstorm.hotel.models.Room;
+import com.skillstorm.hotel.dtos.HotelDTO;
 import com.skillstorm.hotel.services.HotelService;
 
 @RestController
@@ -27,7 +26,7 @@ public class HotelController {
 	
 //	/hotels?start=date&end=date&location=string&size=int
 	@GetMapping
-	public List<Room> findAll(
+	public List<HotelDTO> findAll(
 			@RequestParam(name = "start") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
 			@RequestParam(name = "end") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
 			@RequestParam String location,
@@ -35,6 +34,7 @@ public class HotelController {
 //			@RequestParam(defaultValue = "1") int page,
 //			@RequestParam(defaultValue = "10") int limit
 			) {
+		log.info("Hotels requested by parameters");
 		return service.findByParams(startDate, endDate, location, roomSize);
 	}
 
