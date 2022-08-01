@@ -14,6 +14,7 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -45,7 +46,7 @@ public class Hotel {
 	private double rate;
 	
 	@OneToMany(mappedBy = "hotel")
-	@JsonManagedReference(value="hotel")
+	@JsonBackReference(value="hotel")
 	private Set<Room> rooms;
 	
 	public Hotel() {

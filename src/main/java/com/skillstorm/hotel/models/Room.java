@@ -32,7 +32,7 @@ public class Room {
 //	@Column(name = "room_hotel")
 	@ManyToOne
 	@JoinColumn(name = "room_hotel")
-	@JsonBackReference(value="hotel")
+	@JsonManagedReference(value="hotel")
 	private Hotel hotel;
 	
 	@NotBlank
@@ -44,7 +44,7 @@ public class Room {
 	private int size;
 	
 	@OneToMany(mappedBy = "room")
-	@JsonManagedReference(value="room")
+	@JsonBackReference(value="room")
 	private Set<Reservation> reservations;
 	
 	@OneToMany(mappedBy = "room")

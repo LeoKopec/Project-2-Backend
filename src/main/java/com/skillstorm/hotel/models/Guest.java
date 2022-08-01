@@ -16,6 +16,7 @@ import javax.validation.constraints.NotBlank;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table(name = "guest")
@@ -44,7 +45,7 @@ public class Guest {
 	private String phone;
 	
 	@OneToMany(mappedBy = "guest")
-	@JsonManagedReference(value="guest")
+	@JsonBackReference(value="room")
 	private Set<Reservation> reservations;
 	
 	public Guest() {

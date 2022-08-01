@@ -15,6 +15,7 @@ import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "reservation")
@@ -29,14 +30,14 @@ public class Reservation {
 //	@Column(name = "reserv_guest")
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "reserv_guest")
-	@JsonBackReference(value="guest")
+	@JsonManagedReference(value="guest")
 	private Guest guest;
 	
 	@NotNull
 //	@Column(name = "reserv_room")
 	@ManyToOne
 	@JoinColumn(name = "reserv_room")
-	@JsonBackReference(value="room")
+	@JsonManagedReference(value="room")
 	private Room room;
 	
 	@Future
