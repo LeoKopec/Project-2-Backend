@@ -1,5 +1,6 @@
 package com.skillstorm.hotel.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.skillstorm.hotel.dtos.ReservationDTO;
 import com.skillstorm.hotel.models.Reservation;
 import com.skillstorm.hotel.repositories.ReservationRepository;
 
@@ -17,10 +19,18 @@ public class ReservationServiceImpl implements ReservationService{
 
 	@Autowired
 	private ReservationRepository repository;
+	@Autowired
+	private ReservationDTOMapper mapper;
 	
 	@Override
-	public List<Reservation> findByEmail(String email) {
-		return repository.findByEmail(email);
+	public List<ReservationDTO> findByEmail(String email) {
+		List<Reservation> reservations = repository.findByEmail(email);
+		List<ReservationDTO> reservationsDto = new ArrayList<>();
+		for (Reservation reservation : reservations) {
+			ReservationDTO myDto = mapper.toDto(reservation);
+			reservationsDto.add(myDto);
+		}
+		return reservationsDto;
 	}
 	
 	@Override

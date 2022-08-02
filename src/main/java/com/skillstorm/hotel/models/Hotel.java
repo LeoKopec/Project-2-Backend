@@ -46,7 +46,7 @@ public class Hotel {
 	private double rate;
 	
 	@OneToMany(mappedBy = "hotel")
-	@JsonBackReference(value="hotel")
+	@JsonManagedReference(value="hotel")
 	private Set<Room> rooms;
 	
 	public Hotel() {

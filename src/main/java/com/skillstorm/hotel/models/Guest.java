@@ -45,7 +45,7 @@ public class Guest {
 	private String phone;
 	
 	@OneToMany(mappedBy = "guest")
-	@JsonBackReference(value="room")
+	@JsonManagedReference(value="guest")
 	private Set<Reservation> reservations;
 	
 	public Guest() {

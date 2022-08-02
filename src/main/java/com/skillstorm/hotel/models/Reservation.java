@@ -30,14 +30,14 @@ public class Reservation {
 //	@Column(name = "reserv_guest")
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "reserv_guest")
-	@JsonManagedReference(value="guest")
+	@JsonBackReference(value="guest")
 	private Guest guest;
 	
 	@NotNull
 //	@Column(name = "reserv_room")
 	@ManyToOne
 	@JoinColumn(name = "reserv_room")
-	@JsonManagedReference(value="room")
+	@JsonBackReference(value="room")
 	private Room room;
 	
 	@Future

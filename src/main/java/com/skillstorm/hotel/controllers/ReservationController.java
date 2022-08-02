@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skillstorm.hotel.dtos.ReservationDTO;
 import com.skillstorm.hotel.models.Reservation;
 import com.skillstorm.hotel.services.ReservationService;
 
@@ -29,7 +30,7 @@ public class ReservationController {
 	private ReservationService service;
 	
 	@GetMapping("/{email}")
-	public List<Reservation> findByEmail(@PathVariable String email) {
+	public List<ReservationDTO> findByEmail(@PathVariable String email) {
 		return service.findByEmail(email);
 	}
 	
