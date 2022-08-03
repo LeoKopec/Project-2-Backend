@@ -28,7 +28,7 @@ public class ReservationServiceImpl implements ReservationService{
 		List<Reservation> reservations = repository.findByEmail(email);
 		List<ReservationDTO> reservationsDto = new ArrayList<>();
 		for (Reservation reservation : reservations) {
-			ReservationDTO myDto = mapper.toDto(reservation);
+			ReservationDTO myDto = mapper.fullToDto(reservation);
 			reservationsDto.add(myDto);
 		}
 		return reservationsDto;
