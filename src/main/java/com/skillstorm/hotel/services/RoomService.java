@@ -14,4 +14,6 @@ public interface RoomService {
 	List<Room> findAll();
 
 	List<Room> findAvailableByParams(int size, String city, LocalDate start, LocalDate end);
+	
+	Room findById(int roomId);
 }

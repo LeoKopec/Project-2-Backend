@@ -42,4 +42,10 @@ public class RoomServiceImpl implements RoomService{
 		return repository.findAvailableByParams(size, city, start, end);
 	}
 
+	@Override
+	public Room findById(int roomId) {
+		// TODO Auto-generated method stub
+		return this.repository.findById(roomId).get();
+	}
+
 }
