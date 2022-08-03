@@ -44,7 +44,7 @@ public class HotelServiceImpl implements HotelService {
 		// first, we get lowest priced rooms in each hotel
 		log.trace("Finding available rooms by parameters.");
 		// This is where we would paginate
-		Map<Hotel, List<Room>> roomsByHotel = this.roomRepo.findAvailableByParams(roomSize, city, startDate, endDate)
+		Map<Hotel, List<Room>> roomsByHotel = this.roomRepo.findAvailableByParams(startDate, endDate, city, roomSize)
 				.stream().collect(Collectors.groupingBy(Room::getHotel));
 		List<HotelDTO> hotelDtos = roomsByHotel.entrySet().stream().map(entry -> {
 			return this.mapper.toDto(entry.getKey(), entry.getValue().stream(), startDate, endDate);
@@ -58,8 +58,8 @@ public class HotelServiceImpl implements HotelService {
 	}
 
 	@Override
-	public List<Room> findRoomsByHotelId(int id, int size, String city, LocalDate start, LocalDate end) {
-		return hotelRepository.findRoomsByHotelId(id, size, city, start, end);
+	public List<Room> findRoomsByHotelId(int id, int size, LocalDate start, LocalDate end) {
+		return hotelRepository.findRoomsByHotelId(id, size, start, end);
 	}
 	
 	

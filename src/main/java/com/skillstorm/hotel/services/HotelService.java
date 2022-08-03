@@ -20,6 +20,6 @@ public interface HotelService {
 
 	public Hotel findById(int id);
 	
-	public List<Room> findRoomsByHotelId(int id, int size, String city, LocalDate start, LocalDate end);
+	public List<Room> findRoomsByHotelId(int id, int size, LocalDate start, LocalDate end);
 
 }

@@ -37,20 +37,20 @@ public class HotelController {
 			@RequestParam(name = "end") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
 			@RequestParam String location,
 			@RequestParam(name = "size") int roomSize
-//			@RequestParam(defaultValue = "1") int page,
-//			@RequestParam(defaultValue = "10") int limit
 			) {
 		log.info("Hotels requested by parameters");
 		return service.findByParams(startDate, endDate, location, roomSize);
 	}
 	
 	@GetMapping("/{id}/rooms")
-	public List<Room> findRoomByIdHotelId(@PathVariable int id, @RequestParam("size") int size, @RequestParam("city") String city, @RequestParam("start") String start, @RequestParam("end") String end ) {
-
-		LocalDate startDate = LocalDate.parse(start);
-		LocalDate endDate = LocalDate.parse(end);
-		
-		return service.findRoomsByHotelId(id, size, city, startDate, endDate);
+	public List<Room> findRoomByIdHotelId(
+			@PathVariable int id,
+			@RequestParam("size") int size,
+			@RequestParam("start") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
+			@RequestParam("end") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate
+			) {
+		log.info("Rooms requested by hotel");
+		return service.findRoomsByHotelId(id, size, startDate, endDate);
 	}
 
 }
