@@ -9,11 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skillstorm.hotel.dtos.HotelDTO;
+import com.skillstorm.hotel.models.Hotel;
+import com.skillstorm.hotel.models.Room;
 import com.skillstorm.hotel.services.HotelService;
 
 @RestController
@@ -38,6 +42,15 @@ public class HotelController {
 			) {
 		log.info("Hotels requested by parameters");
 		return service.findByParams(startDate, endDate, location, roomSize);
+	}
+	
+	@GetMapping("/{id}/rooms")
+	public List<Room> findRoomByIdHotelId(@PathVariable int id, @RequestParam("size") int size, @RequestParam("city") String city, @RequestParam("start") String start, @RequestParam("end") String end ) {
+
+		LocalDate startDate = LocalDate.parse(start);
+		LocalDate endDate = LocalDate.parse(end);
+		
+		return service.findRoomsByHotelId(id, size, city, startDate, endDate);
 	}
 
 }

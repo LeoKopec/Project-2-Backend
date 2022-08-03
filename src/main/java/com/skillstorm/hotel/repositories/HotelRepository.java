@@ -43,4 +43,16 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer> {
 //			@Param("size") int roomSize,
 //			@Param("page") int page,
 //			@Param("limit") int limit);
+	
+	
+	@Query("SELECT h from Hotel h WHERE h.id =:id")
+	public Hotel findById(int id);
+
+
+	@Query(" SELECT room FROM Room room WHERE room.size =:size AND room.hotel.id =:id AND "
+			+ "room.hotel.id IN (SELECT hotel.id FROM Hotel hotel WHERE hotel.city =:city) "
+			+ "AND room.id NOT IN (SELECT reserv.room FROM Reservation reserv WHERE (reserv.start_date BETWEEN :start AND :end) "
+			+ "OR (reserv.end_date BETWEEN :start AND :end) OR reserv.start_date<= :start and reserv.end_date >=:end) ")
+	public List<Room> findRoomsByHotelId(int id, int size, String city, LocalDate start, LocalDate end);
+
 }
