@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skillstorm.hotel.dtos.HotelDTO;
+import com.skillstorm.hotel.dtos.RoomDTO;
 import com.skillstorm.hotel.models.Hotel;
 import com.skillstorm.hotel.models.Room;
 import com.skillstorm.hotel.services.HotelService;
+import com.skillstorm.hotel.services.RoomDTOMapper;
 
 @RestController
 @CrossOrigin("*")
@@ -29,6 +31,8 @@ public class HotelController {
 	
 	@Autowired
 	private HotelService service;
+	@Autowired
+	private RoomDTOMapper roomMapper;
 	
 //	/hotels?start=date&end=date&location=string&size=int
 	@GetMapping
@@ -43,14 +47,17 @@ public class HotelController {
 	}
 	
 	@GetMapping("/{id}/rooms")
-	public List<Room> findRoomByIdHotelId(
+	public List<RoomDTO> findRoomByIdHotelId(
 			@PathVariable int id,
 			@RequestParam("size") int size,
 			@RequestParam("start") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
 			@RequestParam("end") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate
 			) {
 		log.info("Rooms requested by hotel");
-		return service.findRoomsByHotelId(id, size, startDate, endDate);
+		List<RoomDTO> dtos = service.findRoomsByHotelId(id, size, startDate, endDate)
+				.stream().map(r -> {return this.roomMapper.toDto(r, startDate, endDate);})
+				.toList();
+		return dtos;
 	}
 
 }

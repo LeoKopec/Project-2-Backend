@@ -1,79 +1,43 @@
 package com.skillstorm.hotel.dtos;
 
-public class RoomDto {
+import java.util.List;
+
+public class RoomDTO {
 	
 	private int id;
-	private String city;
-	private int roomSize;
-	private double rate;
+	private String name;
+	private int size;
+	
+	// The prices, typically scoped by the date range
+	private List<Float> prices;
 	
 	
-	public RoomDto() {
+	public RoomDTO() {
 		super();
-	}
-	
-	public RoomDto(int id, String city, int roomSize, double rate) {
-		super();
-		this.id = id;
-		this.city = city;
-		this.roomSize = roomSize;
-		this.rate = rate;
 	}
 
-	/**
-	 * @return the id
-	 */
+	public RoomDTO(int id, String name, int size, List<Float> prices) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.size = size;
+		this.prices = prices;
+	}
+
 	public int getId() {
 		return id;
 	}
 
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(int id) {
-		this.id = id;
+	public String getName() {
+		return name;
 	}
 
-	/**
-	 * @return the city
-	 */
-	public String getCity() {
-		return city;
+	public int getSize() {
+		return size;
 	}
 
-	/**
-	 * @param city the city to set
-	 */
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	/**
-	 * @return the roomSize
-	 */
-	public int getRoomSize() {
-		return roomSize;
-	}
-
-	/**
-	 * @param roomSize the roomSize to set
-	 */
-	public void setRoomSize(int roomSize) {
-		this.roomSize = roomSize;
-	}
-
-	/**
-	 * @return the rate
-	 */
-	public double getRate() {
-		return rate;
-	}
-
-	/**
-	 * @param rate the rate to set
-	 */
-	public void setRate(double rate) {
-		this.rate = rate;
+	public List<Float> getPrices() {
+		return prices;
 	}
 	
 }
