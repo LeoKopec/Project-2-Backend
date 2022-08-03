@@ -31,31 +31,23 @@ public class RoomController {
 	@Autowired
 	private RoomService service;
 
-//	@GetMapping("{id}/rooms?start=date&end=date&size=int")
-//	public Streamable<Room> findAvailableByParams(
-//			@PathVariable int id,
-//			@RequestParam("start") LocalDate startDate,
-//			@RequestParam("end") LocalDate endDate,
-//			@RequestParam("city") String city,
-//			@RequestParam("size") int roomSize) {
-//		
-//		return service.findAvailableByParams(startDate, endDate, city, roomSize);
-//		
-//	}
+	@GetMapping("{id}/rooms?start=date&end=date&size=int")
+	public Streamable<Room> findAvailableByParams(
+			@PathVariable int id,
+			@RequestParam("start") LocalDate startDate,
+			@RequestParam("end") LocalDate endDate,
+			@RequestParam("city") String city,
+			@RequestParam("size") int roomSize) {
+		
+		return service.findAvailableByParams(startDate, endDate, city, roomSize);
+		
+	}
 	
 //	@GetMapping("/rooms")
 //	public List<Room> findAll() {
 //		System.out.println("here");
 //		return service.findAll();
 //	}
-	
-	@GetMapping("/rooms")
-	public List<Room> findSomeRoom(@RequestParam("size") int size, @RequestParam("city") String city, @RequestParam("start") String start, @RequestParam("end") String end ) {
-		LocalDate startDate = LocalDate.parse(start);
-		LocalDate endDate = LocalDate.parse(end);
-		
-		return service.findAvailableByParams(size, city, startDate, endDate);
-	}
 	
 //	/rooms/{id}/pricing?start=DATE&end=DATE
 	@GetMapping("/{id}")

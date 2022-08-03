@@ -21,25 +21,19 @@ public class RoomServiceImpl implements RoomService{
 	@Autowired
 	private RoomRepository repository;
 
-//	@Override
-//	public Streamable<Room> findAvailableByParams(
-//				@Param("start") LocalDate startDate,
-//				@Param("end") LocalDate endDate,
-//				@Param("city") String city,
-//				@Param("size") int roomSize) {
-//		
-////		return repository.findAvailableByParams(startDate, endDate, city, roomSize);
-//		return null;
-//	}
+	@Override
+	public Streamable<Room> findAvailableByParams(
+				@Param("start") LocalDate startDate,
+				@Param("end") LocalDate endDate,
+				@Param("city") String city,
+				@Param("size") int roomSize) {
+		
+		return repository.findAvailableByParams(startDate, endDate, city, roomSize);
+	}
 
 	@Override
 	public List<Room> findAll() {
 		return repository.findAll();
-	}
-
-	@Override
-	public List<Room> findAvailableByParams(@RequestParam int size, @RequestParam String city, @RequestParam("start") LocalDate start, @RequestParam("end") LocalDate end) {
-		return repository.findAvailableByParams(size, city, start, end);
 	}
 
 	@Override
