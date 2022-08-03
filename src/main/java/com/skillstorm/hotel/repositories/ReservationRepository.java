@@ -11,4 +11,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
 
 	@Query("select r from Reservation r where r.guest.email = ?1")
 	List<Reservation> findByEmail(String email);
+	
+	@Query("select r from Reservation r where r.id = ?1")
+	Reservation findById(int id);
 }

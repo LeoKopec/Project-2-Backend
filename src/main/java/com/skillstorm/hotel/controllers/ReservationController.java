@@ -34,6 +34,11 @@ public class ReservationController {
 		return service.findByEmail(email);
 	}
 	
+	@GetMapping("/changes/{id}")
+	public ReservationDTO findById(@PathVariable int id) {
+		return service.findById(id);
+	}
+	
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Reservation create(@Valid @RequestBody Reservation reservation) {
@@ -41,7 +46,7 @@ public class ReservationController {
 	}
 	
 	@PutMapping("/{id}")
-	public Reservation update(@Valid @RequestBody Reservation reservation, @PathVariable int id) {
+	public Reservation update(@Valid @RequestBody ReservationDTO reservation, @PathVariable int id) {
 		reservation.setId(id);
 		return service.update(reservation);
 	}

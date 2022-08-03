@@ -2,6 +2,7 @@ package com.skillstorm.hotel.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -39,13 +40,21 @@ public class ReservationServiceImpl implements ReservationService{
 	}
 
 	@Override
-	public Reservation update(Reservation reservation) {
-		return repository.save(reservation);
+	public Reservation update(ReservationDTO resDTO) {
+		Reservation myReservation = mapper.toReservation(resDTO);
+		return repository.save(myReservation);
 	}
 
 	@Override
 	public void deleteById(int id) {
 		repository.deleteById(id);
+	}
+
+	@Override
+	public ReservationDTO findById(int id) {
+		Reservation reservation = repository.findById(id);
+		ReservationDTO resDTO = mapper.fullToDto(reservation);
+		return resDTO;
 	}
 
 
