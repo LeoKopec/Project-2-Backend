@@ -30,27 +30,9 @@ public class RoomController {
 
 	@Autowired
 	private RoomService service;
-
-	@GetMapping("{id}/rooms?start=date&end=date&size=int")
-	public Streamable<Room> findAvailableByParams(
-			@PathVariable int id,
-			@RequestParam("start") LocalDate startDate,
-			@RequestParam("end") LocalDate endDate,
-			@RequestParam("city") String city,
-			@RequestParam("size") int roomSize) {
-		
-		return service.findAvailableByParams(startDate, endDate, city, roomSize);
-		
-	}
-	
-//	@GetMapping("/rooms")
-//	public List<Room> findAll() {
-//		System.out.println("here");
-//		return service.findAll();
-//	}
 	
 //	/rooms/{id}/pricing?start=DATE&end=DATE
-	@GetMapping("/{id}")
+	@GetMapping("/{id}/pricing")
 	public double getRoomPricing(
 			@PathVariable(name = "id") int roomId,
 			@RequestParam(name = "start") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
