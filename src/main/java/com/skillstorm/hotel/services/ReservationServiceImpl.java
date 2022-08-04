@@ -9,9 +9,12 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.skillstorm.hotel.Repository.GuestRepository;
 import com.skillstorm.hotel.dtos.ReservationDTO;
+import com.skillstorm.hotel.models.Guest;
 import com.skillstorm.hotel.models.Reservation;
 import com.skillstorm.hotel.repositories.ReservationRepository;
+import com.skillstorm.hotel.service.GuestService;
 
 @Service
 @Primary
@@ -22,6 +25,8 @@ public class ReservationServiceImpl implements ReservationService{
 	private ReservationRepository repository;
 	@Autowired
 	private ReservationDTOMapper mapper;
+	@Autowired
+	private GuestService guestService;
 	
 	@Override
 	public List<ReservationDTO> findByEmail(String email) {
@@ -35,12 +40,17 @@ public class ReservationServiceImpl implements ReservationService{
 	}
 	
 	@Override
-	public Reservation save(Reservation reservation) {
-		return repository.save(reservation);
+	public Reservation save(ReservationDTO resDTO) {
+		
+		Reservation myReservation = mapper.toReservation(resDTO);
+		return repository.save(myReservation);
 	}
 
 	@Override
 	public Reservation update(ReservationDTO resDTO) {
+		Guest newGuest = mapper.toGuest(resDTO);
+		Guest guest = guestService.save(newGuest);
+		System.out.println(guest.getId());
 		Reservation myReservation = mapper.toReservation(resDTO);
 		return repository.save(myReservation);
 	}

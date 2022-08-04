@@ -2,6 +2,7 @@ package com.skillstorm.hotel.controllers;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -59,7 +60,7 @@ public class HotelController {
 		log.info("Rooms requested by hotel");
 		List<RoomDTO> dtos = service.findRoomsByHotelId(id, size, startDate, endDate)
 				.stream().map(r -> {return this.roomMapper.toDto(r, startDate, endDate);})
-				.toList();
+				.collect(Collectors.toList());
 		return dtos;
 	}
 	

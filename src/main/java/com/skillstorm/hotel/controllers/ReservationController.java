@@ -41,7 +41,7 @@ public class ReservationController {
 	
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public Reservation create(@Valid @RequestBody Reservation reservation) {
+	public Reservation create(@Valid @RequestBody ReservationDTO reservation) {
 		return service.save(reservation);
 	}
 	
