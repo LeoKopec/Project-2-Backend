@@ -55,4 +55,8 @@ public class ReservationDTOMapper {
 								resDto.getEnd_date(),
 								(float) resDto.getTotal_price());
 	}
+	
+	public Guest toGuest(ReservationDTO resDto) {
+		return new Guest(resDto.getFirst_name(), resDto.getLast_name(), resDto.getEmail(), resDto.getPhone());
+	}
 }
