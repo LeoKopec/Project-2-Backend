@@ -19,6 +19,7 @@ import com.skillstorm.hotel.dtos.HotelDTO;
 import com.skillstorm.hotel.dtos.RoomDTO;
 import com.skillstorm.hotel.models.Hotel;
 import com.skillstorm.hotel.models.Room;
+import com.skillstorm.hotel.services.HotelDTOMapper;
 import com.skillstorm.hotel.services.HotelService;
 import com.skillstorm.hotel.services.RoomDTOMapper;
 
@@ -33,6 +34,8 @@ public class HotelController {
 	private HotelService service;
 	@Autowired
 	private RoomDTOMapper roomMapper;
+	@Autowired
+	private HotelDTOMapper hotelMapper;
 	
 //	/hotels?start=date&end=date&location=string&size=int
 	@GetMapping
@@ -58,6 +61,12 @@ public class HotelController {
 				.stream().map(r -> {return this.roomMapper.toDto(r, startDate, endDate);})
 				.toList();
 		return dtos;
+	}
+	
+	@GetMapping("/{id}")
+	public HotelDTO findHotelById(@PathVariable int id) {
+		Hotel hotel = this.service.findById(id);
+		return this.hotelMapper.toDto(hotel, hotel.getRooms().stream());
 	}
 
 }
