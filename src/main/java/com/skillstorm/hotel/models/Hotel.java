@@ -1,12 +1,53 @@
 package com.skillstorm.hotel.models;
 
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+@Entity
+@Table(name = "hotel")
 public class Hotel {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "hotel_id")
 	private int id;
+	
+	@NotBlank
+	@Size(max = 45)
+	@Column(name = "hotel_name")
 	private String name;
+	
+	@Size(max = 300)
+	@Column(name = "hotel_desc")
 	private String desc;
+	
+	@NotBlank
+	@Size(max = 45)
+	@Column(name = "hotel_city")
 	private String city;
+	
+	@DecimalMin(value = "1.0")
+	@DecimalMax(value = "5.0")
+	@Column(name = "hotel_rate")
 	private double rate;
+	
+	@OneToMany(mappedBy = "hotel")
+	@JsonManagedReference(value="hotel")
+	private Set<Room> rooms;
 	
 	public Hotel() {
 		
@@ -70,6 +111,14 @@ public class Hotel {
 
 	public void setRate(double rate) {
 		this.rate = rate;
+	}
+
+	public Set<Room> getRooms() {
+		return rooms;
+	}
+
+	public void setRooms(Set<Room> rooms) {
+		this.rooms = rooms;
 	}
 
 	// to-string function
