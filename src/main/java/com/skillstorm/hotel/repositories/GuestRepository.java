@@ -1,5 +1,12 @@
-package com.skillstorm.hotel.repositories;
+package com.skillstorm.hotel.Repository;
 
-public interface GuestRepository {
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
+import com.skillstorm.hotel.models.Guest;
+
+@Repository
+public interface GuestRepository extends CrudRepository<Guest , Integer>{
+
+	
 }
