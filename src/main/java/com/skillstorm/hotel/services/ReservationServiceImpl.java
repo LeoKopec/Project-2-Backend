@@ -6,15 +6,18 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.skillstorm.hotel.Repository.GuestRepository;
 import com.skillstorm.hotel.dtos.ReservationDTO;
 import com.skillstorm.hotel.models.Guest;
 import com.skillstorm.hotel.models.Reservation;
+import com.skillstorm.hotel.repositories.GuestRepository;
 import com.skillstorm.hotel.repositories.ReservationRepository;
-import com.skillstorm.hotel.service.GuestService;
+import com.skillstorm.hotel.services.exceptions.ReservationOverlapException;
 
 @Service
 @Primary
@@ -40,10 +43,18 @@ public class ReservationServiceImpl implements ReservationService{
 	}
 	
 	@Override
-	public Reservation save(ReservationDTO resDTO) {
-		
-		Reservation myReservation = mapper.toReservation(resDTO);
-		return repository.save(myReservation);
+	@Transactional(isolation = Isolation.SERIALIZABLE, rollbackFor = { OptimisticLockingFailureException.class })
+	public Reservation save(ReservationDTO resDTO) throws OptimisticLockingFailureException {
+		Reservation newReservation = mapper.toReservation(resDTO);
+		newReservation.setGuest(this.guestService.save(newReservation.getGuest()));
+		if (repository.existsByRoomAndDateRange(
+				newReservation.getRoom().getId(),
+				newReservation.getStart_date(),
+				newReservation.getEnd_date())) {
+			throw new ReservationOverlapException("a conflicting reservation was found");
+		} else {
+			return repository.save(newReservation);
+		}
 	}
 
 	@Override
