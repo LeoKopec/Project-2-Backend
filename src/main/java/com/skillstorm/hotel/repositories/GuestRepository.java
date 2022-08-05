@@ -1,4 +1,4 @@
-package com.skillstorm.hotel.Repository;
+package com.skillstorm.hotel.repositories;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

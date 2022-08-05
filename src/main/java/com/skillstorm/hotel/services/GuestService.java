@@ -1,4 +1,4 @@
-package com.skillstorm.hotel.service;
+package com.skillstorm.hotel.services;
 
 
 

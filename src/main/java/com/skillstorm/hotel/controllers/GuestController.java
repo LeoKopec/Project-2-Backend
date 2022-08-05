@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skillstorm.hotel.models.Guest;
-import com.skillstorm.hotel.service.GuestService;
+import com.skillstorm.hotel.services.GuestService;
 
 @RestController
 @RequestMapping("/guest")

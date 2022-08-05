@@ -1,11 +1,11 @@
-package com.skillstorm.hotel.service;
+package com.skillstorm.hotel.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
-import com.skillstorm.hotel.Repository.GuestRepository;
 import com.skillstorm.hotel.models.Guest;
+import com.skillstorm.hotel.repositories.GuestRepository;
 
 @Service
 @Primary
