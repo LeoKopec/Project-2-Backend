@@ -18,10 +18,10 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
 	@Query("select r from Reservation r where r.id = ?1")
 	Reservation findById(int id);
 	
-	@Query("SELECT CASE WHEN COUNT(r)> 0 THEN TRUE ELSE FALSE END FROM Reservation r\r\n"
+	@Query("SELECT r FROM Reservation r\r\n"
 			+ "WHERE ((r.start_date BETWEEN :start AND :end)\r\n"
 			+ "OR (r.end_date BETWEEN :start AND :end)\r\n"
 			+ "OR (r.start_date < :start AND r.end_date > :end))\r\n"
-			+ "AND r.room.id = :roomId")
-	boolean existsByRoomAndDateRange(@Param("roomId") int roomId, @Param("start") LocalDate start, @Param("end") LocalDate end);
+			+ "AND r.room = :room")
+	List<Reservation> findByRoomAndDateRange(@Param("room") Room room, @Param("start") LocalDate start, @Param("end") LocalDate end);
 }

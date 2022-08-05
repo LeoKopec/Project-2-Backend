@@ -3,6 +3,7 @@ package com.skillstorm.hotel.services;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -43,27 +44,35 @@ public class ReservationServiceImpl implements ReservationService{
 	}
 	
 	@Override
-	@Transactional(isolation = Isolation.SERIALIZABLE, rollbackFor = { OptimisticLockingFailureException.class })
-	public Reservation save(ReservationDTO resDTO) throws OptimisticLockingFailureException {
+	@Transactional(isolation = Isolation.SERIALIZABLE)
+	public Reservation save(ReservationDTO resDTO) {
 		Reservation newReservation = mapper.toReservation(resDTO);
 		newReservation.setGuest(this.guestService.save(newReservation.getGuest()));
-		if (repository.existsByRoomAndDateRange(
-				newReservation.getRoom().getId(),
+		if (repository.findByRoomAndDateRange(
+				newReservation.getRoom(),
 				newReservation.getStart_date(),
-				newReservation.getEnd_date())) {
+				newReservation.getEnd_date()).size() > 0) {
 			throw new ReservationOverlapException("a conflicting reservation was found");
-		} else {
-			return repository.save(newReservation);
 		}
+		return repository.save(newReservation);
 	}
 
 	@Override
+	@Transactional(isolation = Isolation.SERIALIZABLE)
 	public Reservation update(ReservationDTO resDTO) {
-		Guest newGuest = mapper.toGuest(resDTO);
-		Guest guest = guestService.save(newGuest);
-		System.out.println(guest.getId());
-		Reservation myReservation = mapper.toReservation(resDTO);
-		return repository.save(myReservation);
+		Reservation newReservation = mapper.toReservation(resDTO);
+		newReservation.setGuest(this.guestService.save(newReservation.getGuest()));
+		List<Reservation> overlapping = repository.findByRoomAndDateRange(
+				newReservation.getRoom(),
+				newReservation.getStart_date(),
+				newReservation.getEnd_date());
+		overlapping = overlapping.stream().filter(res -> {
+			return res.getId() != newReservation.getId();
+		}).collect(Collectors.toList());
+		if (overlapping.size() > 0) {
+			throw new ReservationOverlapException("a conflicting reservation was found");
+		}
+		return repository.save(newReservation);
 	}
 
 	@Override
