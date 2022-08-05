@@ -15,7 +15,6 @@ import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "reservation")
@@ -132,6 +131,5 @@ public class Reservation {
 		return "Reservation [id=" + id + ", guest=" + guest.getId() + ", room=" + room.getId() + ", start_date=" + start_date + ", end_date=" + end_date
 				+ ", total_price=" + total_price + "]";
 	}
-	
 	
 }

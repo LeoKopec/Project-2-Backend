@@ -59,4 +59,5 @@ public class ReservationDTOMapper {
 	public Guest toGuest(ReservationDTO resDto) {
 		return new Guest(resDto.getFirst_name(), resDto.getLast_name(), resDto.getEmail(), resDto.getPhone());
 	}
+	
 }

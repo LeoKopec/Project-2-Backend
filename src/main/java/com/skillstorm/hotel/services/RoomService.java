@@ -14,4 +14,5 @@ public interface RoomService {
 	List<Room> findAll();
 	
 	Room findById(int roomId);
+	
 }

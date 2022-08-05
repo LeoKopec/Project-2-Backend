@@ -39,9 +39,6 @@ public class HotelServiceImpl implements HotelService {
 //			int page,
 //			int limit
 			) {
-		// TODO Auto-generated method stub
-		// Hotels and their lowest available room price 
-		// first, we get lowest priced rooms in each hotel
 		log.trace("Finding available rooms by parameters.");
 		// This is where we would paginate
 		Map<Hotel, List<Room>> roomsByHotel = this.roomRepo.findAvailableByParams(startDate, endDate, city, roomSize)
@@ -62,7 +59,4 @@ public class HotelServiceImpl implements HotelService {
 		return hotelRepository.findRoomsByHotelId(id, size, start, end);
 	}
 	
-	
-	
-
 }

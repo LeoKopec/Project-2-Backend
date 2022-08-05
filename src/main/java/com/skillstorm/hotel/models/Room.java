@@ -12,16 +12,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "room")
 public class Room {
-	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -126,6 +123,5 @@ public class Room {
 	public String toString() {
 		return "Room [id=" + id + ", hotel=" + hotel.getId() + ", name=" + name + ", size=" + size + "]";
 	}
-	
 	
 }

@@ -5,19 +5,14 @@ import java.util.OptionalDouble;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skillstorm.hotel.dtos.HotelDTO;
 import com.skillstorm.hotel.models.Hotel;
 import com.skillstorm.hotel.models.Room;
-import com.skillstorm.hotel.repositories.PriceRepository;
 
 @Service
 public class HotelDTOMapper {
-	
-//	@Autowired
-//	PriceRepository priceRepo;
 	
 	public HotelDTO toDto(Hotel hotel, Stream<Room> rooms) {
 		final AtomicInteger num = new AtomicInteger();
@@ -54,4 +49,5 @@ public class HotelDTOMapper {
 	public Hotel toHotel(HotelDTO dto) {
 		return new Hotel(dto.getId(), dto.getName(), dto.getDesc(), dto.getCity(), dto.getRate());
 	}
+	
 }

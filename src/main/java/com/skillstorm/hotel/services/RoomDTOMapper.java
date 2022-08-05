@@ -33,4 +33,5 @@ public class RoomDTOMapper {
 	public Room toRoom(RoomDTO dto) {
 		return service.findById(dto.getId());
 	}
+	
 }

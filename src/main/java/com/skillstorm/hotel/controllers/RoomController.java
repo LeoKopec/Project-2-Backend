@@ -1,14 +1,9 @@
 package com.skillstorm.hotel.controllers;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.OptionalDouble;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
-import org.springframework.data.util.Streamable;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,8 +23,6 @@ import com.skillstorm.hotel.services.RoomService;
 
 public class RoomController {
 		
-	private static final Logger log = LoggerFactory.getLogger(RoomController.class);
-
 	@Autowired
 	private RoomService service;
 	@Autowired

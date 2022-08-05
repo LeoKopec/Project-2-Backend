@@ -1,7 +1,5 @@
 package com.skillstorm.hotel.controllers;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +15,14 @@ import com.skillstorm.hotel.services.GuestService;
 @RequestMapping("/guest")
 public class GuestController {
 
-  @Autowired
-  private GuestService guestService;
+	@Autowired
+	private GuestService guestService;
 
-  @PostMapping
-  public Guest save(@Valid @RequestBody Guest guest) {
+	@PostMapping
+	public Guest save(@Valid @RequestBody Guest guest) {
 
-    return guestService.save(guest);
+		return guestService.save(guest);
 
-  }
+	}
 
 }

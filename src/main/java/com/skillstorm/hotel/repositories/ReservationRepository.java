@@ -24,4 +24,5 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
 			+ "OR (r.start_date < :start AND r.end_date > :end))\r\n"
 			+ "AND r.room = :room")
 	List<Reservation> findByRoomAndDateRange(@Param("room") Room room, @Param("start") LocalDate start, @Param("end") LocalDate end);
+	
 }

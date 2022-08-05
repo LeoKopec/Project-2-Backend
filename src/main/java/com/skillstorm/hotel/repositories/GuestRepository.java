@@ -8,5 +8,4 @@ import com.skillstorm.hotel.models.Guest;
 @Repository
 public interface GuestRepository extends CrudRepository<Guest , Integer>{
 
-	
 }

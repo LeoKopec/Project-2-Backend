@@ -2,21 +2,16 @@ package com.skillstorm.hotel.services;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
-import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.skillstorm.hotel.dtos.ReservationDTO;
-import com.skillstorm.hotel.models.Guest;
 import com.skillstorm.hotel.models.Reservation;
-import com.skillstorm.hotel.repositories.GuestRepository;
 import com.skillstorm.hotel.repositories.ReservationRepository;
 import com.skillstorm.hotel.services.exceptions.ReservationOverlapException;
 
@@ -86,6 +81,5 @@ public class ReservationServiceImpl implements ReservationService{
 		ReservationDTO resDTO = mapper.fullToDto(reservation);
 		return resDTO;
 	}
-
 
 }

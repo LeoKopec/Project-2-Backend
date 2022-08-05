@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class PriceId implements Serializable {
+	
 	private static final long serialVersionUID = 1875756392614153411L;
 	private Room room;
 	private LocalDate day;
