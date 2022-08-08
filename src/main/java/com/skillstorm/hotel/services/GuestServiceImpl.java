@@ -1,5 +1,7 @@
 package com.skillstorm.hotel.services;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,11 @@ public class GuestServiceImpl implements GuestService {
 	@Override
 	public Guest save(Guest guest) {
 		return repo.save(guest);
+	}
+
+	@Override
+	public Optional<Guest> findById(int id) {
+		return repo.findById(id);
 	}
 
 }

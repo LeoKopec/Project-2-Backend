@@ -55,4 +55,10 @@ public class RoomController {
 		return optD.isPresent() ? optD.getAsDouble() : 0;
 	}
 	
+	@GetMapping("/room/{id}")
+	public RoomDTO findById(@PathVariable int id) {
+		Room room = service.findById(id);
+		return this.mapper.toDto(room);
+	}
+	
 }
